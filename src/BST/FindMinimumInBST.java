@@ -28,94 +28,45 @@ public class FindMinimumInBST{
 	}
 	
 	void printTree(Node node) {
-		Node current = node;
 		
-		if(current == null) {
+		if(node == null) {
 			return;
 		}
-		printTree(current.left);
+		
+		printTree(node.left);
 		System.out.println(node.data);
-		printTree(current.right);
+		printTree(node.right);
+	}
+	
+	int findMinimumValue(Node node) {
+		
+		if(node == null) {
+			return Integer.MIN_VALUE;
+		}
+		
+		if(node.left == null) {
+			return node.data;
+		}
+		
+		findMinimumValue(node.left);
+		
+		return Integer.MIN_VALUE;
 	}
 	
 	public static void main(String[] args) {
 		FindMinimumInBST tree = new FindMinimumInBST();
 		
 		Node root = null;
+		System.out.println(tree.findMinimumValue(root));
 		root = tree.insertNewValue(root, 1);
 		
-		tree.insertNewValue(root, 15);
-		tree.insertNewValue(root, 2);
-		tree.insertNewValue(root, 5);
-		tree.insertNewValue(root, 25);
+		root = tree.insertNewValue(root, 15);
+		root = tree.insertNewValue(root, 2);
+		root = tree.insertNewValue(root, 5);
+		root = tree.insertNewValue(root, 25);
 		
 		tree.printTree(root);
+		
+		System.out.println(tree.findMinimumValue(root));
 	}
 }
-
-//class Node {
-//
-//	int data;
-//	Node left, right;
-//
-//	Node(int d) {
-//		data = d;
-//		left = right = null;
-//	}
-//}
-//
-//class FindMinimumInBST {
-//
-//	static Node head;
-//	
-//	Node insert(Node node, int data) {
-//		
-//		/* 1. If the tree is empty, return a new,	
-//		single node */
-//		if (node == null) {
-//			return (new Node(data));
-//		} else {
-//			
-//			/* 2. Otherwise, recur down the tree */
-//			if (data <= node.data) {
-//				node.left = insert(node.left, data);
-//			} else {
-//				node.right = insert(node.right, data);
-//			}
-//
-//			/* return the (unchanged) node pointer */
-//			return node;
-//		}
-//	}
-//
-//	/* Given a non-empty binary search tree,
-//	return the minimum data value found in that
-//	tree. Note that the entire tree does not need
-//	to be searched. */
-//	int minvalue(Node node) {
-//		Node current = node;
-//
-//		/* loop down to find the leftmost leaf */
-//		while (current.left != null) {
-//			current = current.left;
-//		}
-//		return (current.data);
-//	}
-//	
-//	// Driver program to test above functions
-//	public static void main(String[] args) {
-//		FindMinimumInBST tree = new FindMinimumInBST();
-//		Node root = null;
-//		root = tree.insert(root, 4);
-//		tree.insert(root, 2);
-//		tree.insert(root, 1);
-//		tree.insert(root, 3);
-//		tree.insert(root, 6);
-//		tree.insert(root, 5);
-//
-//		System.out.println("Minimum value of BST is " + tree.minvalue(root));
-//	}
-//}
-
-//This code is contributed by Mayank Jaiswal
-
